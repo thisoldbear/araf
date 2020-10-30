@@ -6,7 +6,7 @@ interface RouteCardProps {
   distance: Number;
 }
 
-export const RouteCard: React.FC<RouteCardProps> = ({ id, name, distance }) => (
+export const RouteCard: React.FC<RouteCardProps> = ({ name, distance }) => (
   <div className={styles.card}>
     <p>{name}</p>
     <p>{distance}km</p>
