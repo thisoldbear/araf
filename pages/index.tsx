@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import firebase from "../firebase";
+import { RouteCard } from "../components/RouteCard/RouteCard";
+
 import styles from "../styles/Home.module.css";
 
 export default function Home(props) {
@@ -11,18 +13,15 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        {props?.routes?.map((route) => (
-          <div key={route.id}>
-            <p key={route}>{route.name}</p>
-            <p key={route}>{route.distance}</p>
-
-            <p>
-              <Link href={`/routes/${route.id}`}>
-                <a>View route</a>
-              </Link>
-            </p>
-          </div>
-        ))}
+        <div className={styles.grid}>
+          {props?.routes?.map((route) => (
+            <Link href={`/routes/${route.id}`} key={route.id}>
+              <div>
+                <RouteCard name={route.name} distance={route.distance} />
+              </div>
+            </Link>
+          ))}
+        </div>
       </main>
     </div>
   );
