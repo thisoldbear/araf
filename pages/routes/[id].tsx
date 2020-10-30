@@ -17,7 +17,7 @@ export default function Route(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const firestore = await firebase.firestore();
   const route = await firestore
     .collection("routes")
