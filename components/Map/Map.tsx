@@ -35,8 +35,8 @@ export const Map: React.FC<MapProps> = ({ gpx }) => {
         lineCap: "round",
       },
       marker_options: {
-        startIconUrl: "marker-icon.png",
-        endIconUrl: "marker-icon.png",
+        startIconUrl: "/marker-icon.png",
+        endIconUrl: "/marker-icon.png",
       },
     })
       .on("loaded", (e) => {

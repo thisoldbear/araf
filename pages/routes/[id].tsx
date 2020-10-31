@@ -2,6 +2,7 @@ import Head from "next/head";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import firebase from "../../firebase";
+import { Route, RouteCategories, Paths, RouteKeys } from "../../types";
 
 import { MapProps } from "../../components/Map/Map";
 
@@ -10,7 +11,7 @@ const Map = dynamic<MapProps>(
   { ssr: false }
 );
 
-export default function Route(props) {
+const Page: React.FC<Route> = ({ name, categories, keys, gpx }) => {
   return (
     <div>
       <Head>
@@ -21,13 +22,16 @@ export default function Route(props) {
         <Link href="/">
           <a>Home</a>
         </Link>
-        <h1>{props.name}</h1>
-
-        {process.browser && <Map gpx={props.gpx} />}
+        <h1>{name}</h1>
+        <p>{categories.map((cat) => RouteCategories[cat])}</p>
+        <p>{keys.map((key) => RouteKeys[key])}</p>
+        {process.browser && <Map gpx={gpx} />}
       </main>
     </div>
   );
-}
+};
+
+export default Page;
 
 export async function getStaticProps(context) {
   const firestore = await firebase.firestore();
@@ -42,14 +46,6 @@ export async function getStaticProps(context) {
       ...route.data(),
     },
   };
-}
-
-interface PathParams {
-  [key: string]: string;
-}
-
-interface Paths {
-  [key: string]: PathParams;
 }
 
 export async function getStaticPaths() {

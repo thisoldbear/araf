@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import firebase from "../firebase";
-import { RouteCard } from "../components/RouteCard/RouteCard";
+import { RouteCard, RouteCardProps } from "../components/RouteCard/RouteCard";
 
 import styles from "../styles/Home.module.css";
 
-export default function Home(props) {
+export default function Home({ routes }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,10 +14,14 @@ export default function Home(props) {
       </Head>
       <main className={styles.main}>
         <div className={styles.grid}>
-          {props?.routes?.map((route) => (
+          {routes?.map((route) => (
             <Link href={`/routes/${route.id}`} key={route.id}>
               <div>
-                <RouteCard name={route.name} distance={route.distance} />
+                <RouteCard
+                  name={route.name}
+                  distance={route.distance}
+                  categories={route.categories}
+                />
               </div>
             </Link>
           ))}
@@ -32,9 +36,14 @@ export async function getStaticProps() {
   const collection = await firestore.collection("routes").get();
 
   const routes = collection.docs.map((doc) => {
+    // Data for route cards
+    const { name, distance, categories } = doc.data() as RouteCardProps;
+
     return {
       id: doc.id,
-      ...doc.data(),
+      name,
+      distance,
+      categories,
     };
   });
 
