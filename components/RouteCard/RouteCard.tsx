@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "../../styles/Home.module.css";
 import { RouteCategories } from "../../types";
+
+import styles from "./RouteCard.module.css";
 
 export interface RouteCardProps {
   name: String;
@@ -14,8 +15,8 @@ export const RouteCard: React.FC<RouteCardProps> = ({
   category,
 }) => (
   <div className={styles.card}>
-    <p>{name}</p>
+    <h3>{name}</h3>
     <p>{distance}km</p>
-    <p>{RouteCategories[category]}</p>
+    <small>{RouteCategories[category]}</small>
   </div>
 );

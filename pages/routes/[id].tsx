@@ -6,6 +6,8 @@ import { Route, RouteCategories, Paths, RouteKeys } from "../../types";
 
 import { MapProps } from "../../components/Map/Map";
 
+import styles from "./[id].module.css";
+
 const Map = dynamic<MapProps>(
   () => import("../../components/Map/Map").then((module) => module.Map) as any,
   { ssr: false }
@@ -13,18 +15,24 @@ const Map = dynamic<MapProps>(
 
 const Page: React.FC<Route> = ({ name, category, keys, gpx }) => {
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
         <title>Route</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <h1>{name}</h1>
-        <p>{RouteCategories[category]}</p>
-        <p>{keys.map((key) => RouteKeys[key])}</p>
+      <main className={styles.main}>
+        <div className={styles.sidebar}>
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+          <h1>{name}</h1>
+          <p>{RouteCategories[category]}</p>
+          <ul>
+            {keys.map((key) => (
+              <li>{RouteKeys[key]} </li>
+            ))}
+          </ul>
+        </div>
         {process.browser && <Map gpx={gpx} />}
       </main>
     </div>

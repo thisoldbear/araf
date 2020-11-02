@@ -2,13 +2,16 @@ import React, { useContext } from "react";
 import { FilterContext, allStateKey } from "../Context/FilterContext";
 import { FilterActionTypes, RouteCategories } from "../../types";
 
+import styles from "./RouteFilters.module.css";
+
 export const RouteFilters: React.FC = ({}) => {
   const { filterState, filterStateDispatch } = useContext(FilterContext);
 
   return (
     <>
-      <div>
+      <div className={styles.filter}>
         <input
+          className={styles.checkbox}
           type="checkbox"
           onChange={() => {
             filterStateDispatch({
@@ -17,12 +20,13 @@ export const RouteFilters: React.FC = ({}) => {
           }}
           checked={filterState?.[allStateKey]}
         />
-        {allStateKey}
+        <span className={styles.checkboxLabel}>{allStateKey}</span>
       </div>
 
       {Object.values(RouteCategories).map((category) => (
-        <div key={category}>
+        <div key={category} className={styles.filter}>
           <input
+            className={styles.checkbox}
             type="checkbox"
             onChange={() => {
               filterStateDispatch({
@@ -33,7 +37,7 @@ export const RouteFilters: React.FC = ({}) => {
             }}
             checked={filterState?.[category]}
           />
-          {category}
+          <span className={styles.checkboxLabel}>{category}</span>
         </div>
       ))}
     </>

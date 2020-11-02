@@ -13,11 +13,12 @@ import styles from "../styles/Home.module.css";
 
 export default function Home({ routes }) {
   const { filterState, filterStateDispatch } = useContext(FilterContext);
+
   const renderRouteCards = (routes: []) => {
     const routeCards = routes.map((route: Route) => {
       return filterState?.[RouteCategories[route.category]] ? (
         <Link href={`/routes/${route.id}`} key={route.id}>
-          <div>
+          <div className={styles.gridItem}>
             <RouteCard
               name={route.name}
               distance={route.distance}
@@ -29,7 +30,7 @@ export default function Home({ routes }) {
     });
 
     return routeCards.every((element) => element === null) ? (
-      <div>No routes</div>
+      <div className={styles.gridItemEmpty}>☹️ No routes ☹️</div>
     ) : (
       routeCards
     );
@@ -42,7 +43,10 @@ export default function Home({ routes }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <RouteFilters />
+        <div className={styles.sidebar}>
+          <h2>Routes</h2>
+          <RouteFilters />
+        </div>{" "}
         <div className={styles.grid}>{renderRouteCards(routes)}</div>
       </main>
     </div>

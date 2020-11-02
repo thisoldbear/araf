@@ -8,24 +8,6 @@
   display: flex;
 }
 
-.grid {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  padding: 1rem;
-}
-
-.gridItem {
-  width: 50%;
-}
-
-.gridItemEmpty {
-  width: 100%;
-  padding: 30px;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
 .sidebar {
   padding: 20px;
   min-width: 320px;
