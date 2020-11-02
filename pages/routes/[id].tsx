@@ -11,7 +11,7 @@ const Map = dynamic<MapProps>(
   { ssr: false }
 );
 
-const Page: React.FC<Route> = ({ name, categories, keys, gpx }) => {
+const Page: React.FC<Route> = ({ name, category, keys, gpx }) => {
   return (
     <div>
       <Head>
@@ -23,7 +23,7 @@ const Page: React.FC<Route> = ({ name, categories, keys, gpx }) => {
           <a>Home</a>
         </Link>
         <h1>{name}</h1>
-        <p>{categories.map((cat) => RouteCategories[cat])}</p>
+        <p>{RouteCategories[category]}</p>
         <p>{keys.map((key) => RouteKeys[key])}</p>
         {process.browser && <Map gpx={gpx} />}
       </main>

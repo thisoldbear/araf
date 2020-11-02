@@ -5,17 +5,17 @@ import { RouteCategories } from "../../types";
 export interface RouteCardProps {
   name: String;
   distance: Number;
-  categories: Array<RouteCategories>;
+  category: RouteCategories;
 }
 
 export const RouteCard: React.FC<RouteCardProps> = ({
   name,
   distance,
-  categories,
+  category,
 }) => (
   <div className={styles.card}>
     <p>{name}</p>
     <p>{distance}km</p>
-    <p>{categories.map((cat) => RouteCategories[cat])}</p>
+    <p>{RouteCategories[category]}</p>
   </div>
 );
