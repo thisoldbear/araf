@@ -19,6 +19,8 @@ export const Map: React.FC<MapProps> = ({ gpx }) => {
 
     mapObj.current = Leaflet.map(mapEl.current, {
       scrollWheelZoom: false,
+      dragging: !Leaflet.Browser.mobile,
+      tap: !Leaflet.Browser.mobile,
     }).setView([51.505, -0.09], 13);
 
     Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
