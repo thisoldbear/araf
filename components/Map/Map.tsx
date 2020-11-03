@@ -30,7 +30,7 @@ export const Map: React.FC<MapProps> = ({ gpx }) => {
       async: true,
       polyline_options: {
         color: "hotpink",
-        opacity: 0.75,
+        opacity: 0.95,
         weight: 5,
         lineCap: "round",
       },
@@ -52,7 +52,6 @@ export const Map: React.FC<MapProps> = ({ gpx }) => {
       style={{
         width: "100%",
         height: "100vh",
-        background: "hotpink",
       }}
     ></div>
   );

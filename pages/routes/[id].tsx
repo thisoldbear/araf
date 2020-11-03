@@ -13,7 +13,16 @@ const Map = dynamic<MapProps>(
   { ssr: false }
 );
 
-const Page: React.FC<Route> = ({ name, category, keys, gpx }) => {
+const Page: React.FC<Route> = ({
+  name,
+  category,
+  distance,
+  climbing,
+  descending,
+  keys,
+  gpx,
+  thumbnail,
+}) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -22,16 +31,24 @@ const Page: React.FC<Route> = ({ name, category, keys, gpx }) => {
       </Head>
       <main className={styles.main}>
         <div className={styles.sidebar}>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-          <h1>{name}</h1>
-          <p>{RouteCategories[category]}</p>
-          <ul>
+          <div className={styles.sidebarHeader}>
+            <Link href="/">
+              <a>&#8592; All routes</a>
+            </Link>
+          </div>
+          <img src={thumbnail} className={styles.thumbnail} />
+          <div className={styles.sidebarInner}>
+            <h1>{name}</h1>
+            <p>{distance}km</p>
+            <p>&#8599; {climbing}m</p>
+            <p>&#8600; {descending}m</p>
+            <small className={styles.label}>{RouteCategories[category]}</small>
+            {/* <ul>
             {keys.map((key) => (
               <li>{RouteKeys[key]} </li>
             ))}
-          </ul>
+            </ul> */}
+          </div>
         </div>
         {process.browser && <Map gpx={gpx} />}
       </main>

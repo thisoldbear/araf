@@ -9,10 +9,36 @@
 }
 
 .sidebar {
-  padding: 20px;
+  width: 320px;
   min-width: 320px;
   background-color: rgba(68, 67, 68, 0.9);
   color: #ffffff;
+}
+
+.sidebarHeader {
+  padding: 20px;
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.thumbnail {
+  display: block;
+  width: 100%;
+}
+
+.sidebarInner {
+  position: relative;
+  padding: 20px;
+}
+
+.label {
+  background-color: #f48475;
+  padding: 10px;
+  color: #ffffff;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  transform: translateY(-100%);
 }
 
 @media (max-width: 768px) {

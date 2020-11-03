@@ -25,4 +25,5 @@ export interface Route {
   gpxUrl: string;
   category: RouteCategories;
   keys: Array<RouteKeys>;
+  thumbnail: string;
 }

@@ -9,14 +9,17 @@
 }
 
 .grid {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  padding: 1rem;
 }
 
-.gridItem {
-  width: 50%;
+.gridInner {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.gridInner > div {
+  width: calc(33% - 40px);
 }
 
 .gridItemEmpty {
@@ -33,6 +36,12 @@
   color: #ffffff;
 }
 
+@media (max-width: 1200px) {
+  .gridInner > div {
+    width: calc(50% - 40px);
+  }
+}
+
 @media (max-width: 768px) {
   .main {
     flex-direction: column;
@@ -44,5 +53,27 @@
 
   .grid {
     width: 100%;
+  }
+
+  .gridInner > div {
+    width: calc(50% - 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .grid {
+    width: 100%;
+  }
+
+  .gridInner > div {
+    width: calc(100% - 40px);
   }
 }
