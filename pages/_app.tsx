@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
 import App from "next/app";
-import "../styles/globals.css";
 import { FilterContextProvider } from "../components/Context/FilterContext";
+
+import "../styles/globals.css";
 
 class MyApp extends App {
   render() {

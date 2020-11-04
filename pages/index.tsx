@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Head from "next/head";
-import firebase from "../firebase";
+import firebase from "../utils/auth/initFirebase";
 import { RouteCard, RouteCardProps } from "../components/RouteCard/RouteCard";
 import { Route, RouteCategories } from "../types";
-
 import { FilterContext } from "../components/Context/FilterContext";
-
 import { RouteFilters } from "../components/Filters/RouteFilters";
+import { Header } from "../components/Header/Header";
 
-import styles from "../styles/Home.module.css";
+import styles from "./index.module.css";
 
 export default function Home({ routes }) {
   const { filterState, filterStateDispatch } = useContext(FilterContext);
@@ -37,9 +36,11 @@ export default function Home({ routes }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>araf.cc Routes</title>
+        <meta name="site-url" content={`${process.env.NEXT_PUBLIC_VERCEL_URL}`}></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main className={styles.main}>
         <div className={styles.sidebar}>
           <h2>Routes</h2>

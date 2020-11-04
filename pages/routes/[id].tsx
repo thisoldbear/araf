@@ -1,10 +1,10 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import firebase from "../../firebase";
+import firebase from "../../utils/auth/initFirebase";
 import { Route, RouteCategories, Paths, RouteKeys } from "../../types";
-
 import { MapProps } from "../../components/Map/Map";
+import { Header } from "../../components/Header/Header";
 
 import styles from "./[id].module.css";
 
@@ -29,6 +29,7 @@ const Page: React.FC<Route> = ({
         <title>Route</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main className={styles.main}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarHeader}>
