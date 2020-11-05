@@ -1,8 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Araf
+
+A site to collate and curate routes conjured / frequented by [Araf.cc](http://araf.cc) and friends.
+
+https://arafcc.vercel.app/
+
+## Tech
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) using [Firebase](https://firebase.google.com/) services.
 
 ## Getting Started
 
-First, run the development server:
+Add a new `.env` file and add your variables. See `env.example` for some you'll need.
+
+To start the development server, run:
 
 ```bash
 npm run dev
@@ -12,19 +22,20 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Roadmap
 
-## Learn More
+Features/things I want to add:
 
-To learn more about Next.js, take a look at the following resources:
+### Code
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [ ] Styling with Sass. I'm finding CSS Modules a bit cumbersome.
+- [ ] Hosting/serving images from a CDN.
+- [ ] Tests 😅
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Features
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [ ] Map View for All routes
+- [ ] Route thumbails generated from GPX/Leaflet
+- [ ] User content management
+  - Users can add/edit their own routes
+- [ ] Admin batch upload
