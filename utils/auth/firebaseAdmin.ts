@@ -1,24 +1,21 @@
-import * as admin from "firebase-admin";
+import * as firebaseAdmin from "firebase-admin";
 
-export const verifyIdToken = (token) => {
-  const firebasePrivateKey = process.env.NEXT_PUBLIC_FIREBASE_PRIVATE_KEY;
+if (!firebaseAdmin.apps.length) {
+  firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(
+      JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_PRIVATE_KEY)
+    ),
+    databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_BUCKET_URL,
+  });
+}
 
-  if (!admin.apps.length) {
-    admin.initializeApp({
-      credential: admin.credential.cert({
-        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-        clientEmail: process.env.NEXT_PUBLIC_FIREBASE_CLIENT_EMAIL,
-        // https://stackoverflow.com/a/41044630/1332513
-        privateKey: firebasePrivateKey.replace(/\\n/g, "\n"),
-      }),
-      databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
-    });
-  }
-
-  return admin
+export const verifyIdToken = (token) =>
+  firebaseAdmin
     .auth()
     .verifyIdToken(token)
     .catch((error) => {
       throw error;
     });
-};
+
+export default firebaseAdmin;

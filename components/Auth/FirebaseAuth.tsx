@@ -1,8 +1,7 @@
 /* globals window */
 import { useEffect, useState } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
-import { Props as StyledFirebaseAuthProps } from "react-firebaseui";
-import firebase from "../../utils/auth/initFirebase";
+import firebase from "../../utils/auth/firebase";
 import { setUserCookie } from "../../utils/auth/userCookies";
 import { mapUserData } from "../../utils/auth/mapUserData";
 
@@ -27,24 +26,26 @@ const firebaseAuthConfig = {
   },
 };
 
-const FirebaseAuth = () => {
+const FirebaseAuth: React.FC = () => {
   // Do not SSR FirebaseUI, because it is not supported.
   // https://github.com/firebase/firebaseui-web/issues/213
   const [renderAuth, setRenderAuth] = useState(false);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       setRenderAuth(true);
     }
   }, []);
+
   return (
-    <div>
+    <>
       {renderAuth ? (
         <StyledFirebaseAuth
           uiConfig={firebaseAuthConfig}
           firebaseAuth={firebase.auth()}
         />
       ) : null}
-    </div>
+    </>
   );
 };
 

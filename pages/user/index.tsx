@@ -3,22 +3,17 @@ import Link from "next/link";
 import Head from "next/head";
 import { useUser } from "../../utils/auth/useUser";
 import { Header } from "../../components/Header/Header";
+import { RoutesApiResponse } from "../api/routes";
+import { fetcher } from "../../utils/fetcher";
 
 import styles from "./index.module.css";
 
 // Based on https://github.com/vercel/next.js/blob/canary/examples/with-firebase-authentication/pages/index.js
 
-const fetcher = (url, token) =>
-  fetch(url, {
-    method: "GET",
-    headers: new Headers({ "Content-Type": "application/json", token }),
-    credentials: "same-origin",
-  }).then((res) => res.json());
-
-const User = () => {
+const User: React.FC = () => {
   const { user, logout } = useUser();
 
-  const { data, error } = useSWR(
+  const { data, error } = useSWR<RoutesApiResponse, unknown>(
     user ? ["/api/routes", user.token] : null,
     fetcher
   );
@@ -78,7 +73,7 @@ const User = () => {
           </p>
 
           <p>
-            <Link href={"/auth"}>
+            <Link href={"/"}>
               <a
                 style={{
                   display: "inline-block",
@@ -88,6 +83,21 @@ const User = () => {
                 }}
               >
                 Home
+              </a>
+            </Link>
+          </p>
+
+          <p>
+            <Link href={"/routes/new"}>
+              <a
+                style={{
+                  display: "inline-block",
+                  color: "blue",
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+              >
+                Add new route
               </a>
             </Link>
           </p>

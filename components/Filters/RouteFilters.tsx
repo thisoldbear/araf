@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { FilterContext, allStateKey } from "../Context/FilterContext";
 import { FilterActionTypes, RouteCategories } from "../../types";
 
 import styles from "./RouteFilters.module.css";
 
-export const RouteFilters: React.FC = ({}) => {
+export const RouteFilters: React.FC = () => {
   const { filterState, filterStateDispatch } = useContext(FilterContext);
 
   return (

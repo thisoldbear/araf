@@ -1,11 +1,8 @@
-import React from "react";
 import Link from "next/link";
 import { useUser } from "../../utils/auth/useUser";
 import styles from "./Header.module.css";
 
-export interface HeaderProps {}
-
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: React.FC = () => {
   const { user, logout } = useUser();
 
   return (

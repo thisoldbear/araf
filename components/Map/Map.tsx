@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Leaflet from "leaflet";
 import LeafletGpx from "leaflet-gpx";
 

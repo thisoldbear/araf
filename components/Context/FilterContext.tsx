@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { FilterActionTypes, RouteCategories } from "../../types";
 
 type FilterStateItem = {
@@ -18,23 +18,29 @@ interface ContextProps {
   filterStateDispatch: React.Dispatch<FilterAction>;
 }
 
+interface FilterContextProviderProps {
+  children: React.ReactNode;
+}
+
 export const allStateKey = "All";
 
 const FilterContext = createContext<Partial<ContextProps>>({});
 
-const FilterContextProvider = ({ children }) => {
+const FilterContextProvider: React.FC<FilterContextProviderProps> = ({
+  children,
+}) => {
   const initialFilterState: FilterStateItem = Object.values(
     RouteCategories
   ).reduce(
-    (acc: Object, curr: string): FilterStateItem => {
+    (acc: FilterStateItem, curr: string) => {
       return {
         [curr]: true,
         ...acc,
-      } as FilterStateItem;
+      };
     },
     {
       [allStateKey]: true,
-    } as any
+    }
   );
 
   const filterReducer: React.Reducer<FilterStateItem, FilterAction> = (

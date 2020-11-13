@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
-import firebase from "../utils/auth/initFirebase";
+import firebase from "../utils/auth/firebase";
 import { RouteCard, RouteCardProps } from "../components/RouteCard/RouteCard";
 import { Route, RouteCategories } from "../types";
 import { FilterContext } from "../components/Context/FilterContext";
@@ -9,11 +9,16 @@ import { Header } from "../components/Header/Header";
 
 import styles from "./index.module.css";
 
-export default function Home({ routes }) {
-  const { filterState, filterStateDispatch } = useContext(FilterContext);
+interface HomeProps {
+  routes: Route[];
+  children: React.ReactNode;
+}
 
-  const renderRouteCards = (routes: []) => {
-    const routeCards = routes.map((route: Route) => {
+const Home = ({ routes }: HomeProps) => {
+  const { filterState } = useContext(FilterContext);
+
+  const renderRouteCards = (routes: Route[]) => {
+    const routeCards = routes.map((route) => {
       return filterState?.[RouteCategories[route.category]] ? (
         <RouteCard
           key={route.id}
@@ -37,7 +42,10 @@ export default function Home({ routes }) {
     <div className={styles.container}>
       <Head>
         <title>araf.cc Routes</title>
-        <meta name="site-url" content={`${process.env.NEXT_PUBLIC_VERCEL_URL}`}></meta>
+        <meta
+          name="site-url"
+          content={`${process.env.NEXT_PUBLIC_VERCEL_URL}`}
+        ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
@@ -56,7 +64,7 @@ export default function Home({ routes }) {
       </main>
     </div>
   );
-}
+};
 
 export async function getStaticProps() {
   const firestore = await firebase.firestore();
@@ -69,7 +77,7 @@ export async function getStaticProps() {
       distance,
       category,
       thumbnail,
-    } = doc.data() as RouteCardProps;
+    } = doc.data() as Route;
 
     return {
       id: doc.id,
@@ -86,3 +94,5 @@ export async function getStaticProps() {
     },
   };
 }
+
+export default Home;

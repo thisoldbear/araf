@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+}
+
+.new {
+  height: 100%;
+  width: 100%;
+  margin: 40px;
+  background-color: #ffffff;
+  padding: 40px;
+}
+
+.new img {
+  max-width: 100%;
+}
