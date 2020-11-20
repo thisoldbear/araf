@@ -16,7 +16,9 @@ const serviceAccount = {
 fs.writeFile('serviceAccount.json', JSON.stringify(
   {
     ...serviceAccount,
-    ...JSON.parse(process.env.FB_KEY) // Parse JSON from Vercel env var
+    // Parse JSON from env var
+    // https://github.com/vercel/vercel/issues/749#issuecomment-707515089
+    ...JSON.parse(process.env.FB_KEY)
   }), function (err) {
     if (err) throw err;
   });
