@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node generateKey.js && next build",
     "start": "next start -p $PORT"
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
     "firebase": "^8.0.0",
     "firebase-admin": "^9.3.0",
     "js-cookie": "^2.2.1",
